@@ -1,0 +1,1 @@
+// SimplifiedAdminPanel.tsx

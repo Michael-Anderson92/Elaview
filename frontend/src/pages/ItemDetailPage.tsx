@@ -22,7 +22,7 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import { supabase } from '../utils/SupabaseClient';
-import { handleImageError, FALLBACK_IMAGE_LARGE, FALLBACK_IMAGE_SMALL } from '../utils/imageFallback';
+import { handleImageError, FALLBACK_IMAGE_LARGE } from '../utils/imageFallback';
 
 // Interface matching your database structure
 interface Listing {
@@ -363,11 +363,11 @@ export default function ItemDetailPage() {
             {/* Updated image container with fallback */}
             <Box sx={{ width: '100%', marginTop: '1em' }}>
               <div className="main-image-container">
-                <img 
-                  src={listing.primary_image_url || 'https://via.placeholder.com/800x400?text=No+Image+Available'} 
-                  alt={listing.title}
-                  onError={(e) => handleImageError(e, 'large')}
-                />
+              <img 
+                src={listing.primary_image_url || FALLBACK_IMAGE_LARGE} 
+                alt={listing.title}
+                onError={(e) => handleImageError(e, 'large')}
+              />
               </div>
 
               {/* Additional Images with fallback */}
@@ -778,6 +778,13 @@ export default function ItemDetailPage() {
           </Box>
         </Box>
       </div>
+      {/* Add this before the final closing </Box> tag */}
+        <ContactOwnerModal 
+          open={contactModalOpen}
+          onClose={() => setContactModalOpen(false)}
+          listingId={listing.id}
+          listingTitle={listing.title}
+        />
     </Box>
   );
-}
+} //

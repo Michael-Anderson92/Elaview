@@ -72,11 +72,10 @@ export default function ContactOwnerModal({
       console.log('📋 Session error:', sessionError);
       
       // Get user
-      const { data: { user }, error: userError } = await supabase.auth.getUser();
+      const { data: { user } } = await supabase.auth.getUser();
       console.log('👤 User:', user);
       console.log('👤 User ID:', user?.id);
       console.log('👤 User email:', user?.email);
-      console.log('👤 User error:', userError);
       
       // Test the auth function
       console.log('🧪 Testing auth function...');
@@ -115,7 +114,7 @@ const handleSubmit = async () => {
   try {
     // Get current user
     console.log('🔐 Getting current user...');
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const { data: { user } } = await supabase.auth.getUser();
     
     console.log('👤 Current user:', user);
     console.log('👤 User ID:', user?.id);
